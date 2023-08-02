@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class Class1
+    public static class GasToolsGlobals
     {
+        public const string TAB_Name = "Gas Tools";
+        public const string PANEL_NAME = "Gas Tools";
     }
 }
