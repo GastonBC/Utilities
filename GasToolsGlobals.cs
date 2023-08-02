@@ -8,7 +8,7 @@ namespace Utilities
 {
     public static class GasToolsGlobals
     {
-        public const string TAB_Name = "Gas Tools";
+        public const string TAB_NAME = "Gas Tools";
         public const string PANEL_NAME = "Gas Tools";
     }
 }

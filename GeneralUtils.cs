@@ -14,7 +14,7 @@ namespace Utilities
     {
         public static void SimpleDialog(string header, string content)
         {
-            TaskDialog mainDialog = new TaskDialog("slantis");
+            TaskDialog mainDialog = new TaskDialog("Gas Tools");
             mainDialog.TitleAutoPrefix = false;
             mainDialog.MainInstruction = header;
             mainDialog.MainContent = content;
@@ -23,7 +23,7 @@ namespace Utilities
 
         public static void SimpleDialog(string content)
         {
-            TaskDialog mainDialog = new TaskDialog("slantis");
+            TaskDialog mainDialog = new TaskDialog("Gas Tools");
             mainDialog.TitleAutoPrefix = false;
             mainDialog.MainContent = content;
             mainDialog.Show();
@@ -31,7 +31,7 @@ namespace Utilities
 
         public static bool ConfirmDialog(string header, string content)
         {
-            TaskDialog mainDialog = new TaskDialog("slantis")
+            TaskDialog mainDialog = new TaskDialog("Gas Tools")
             {
                 TitleAutoPrefix = false,
                 MainInstruction = header,
@@ -108,13 +108,13 @@ namespace Utilities
             string str = imagePath.Substring(imagePath.Length - 3);
 
             if (str == "jpg")
-                return (ImageSource)new JpegBitmapDecoder(manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
+                return (ImageSource)new JpegBitmapDecoder(bitmapStream: manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
             else if (str == "bmp")
-                return (ImageSource)new BmpBitmapDecoder(manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
+                return (ImageSource)new BmpBitmapDecoder(bitmapStream: manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
             else if (str == "png")
-                return (ImageSource)new PngBitmapDecoder(manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
+                return (ImageSource)new PngBitmapDecoder(bitmapStream: manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
             else if (str == "ico")
-                return (ImageSource)new IconBitmapDecoder(manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
+                return (ImageSource)new IconBitmapDecoder(bitmapStream: manifestResourceStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default).Frames[0];
             else
                 return (ImageSource)null;
         }
