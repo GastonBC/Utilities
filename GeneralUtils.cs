@@ -89,6 +89,7 @@ namespace Utilities
             RibbonPanel DefaultPanel = null;
             GetRevitTab(uiApp, TabName);
 
+
             // Create the panel in the addins tab
             try
             {
@@ -97,7 +98,7 @@ namespace Utilities
 
             catch (Autodesk.Revit.Exceptions.ArgumentException)
             {
-                DefaultPanel = uiApp.GetRibbonPanels().FirstOrDefault(n => n.Name.Equals(PanelName, StringComparison.InvariantCulture));
+                DefaultPanel = uiApp.GetRibbonPanels(TabName).FirstOrDefault(n => n.Name.Equals(PanelName, StringComparison.InvariantCulture));
             }
 
             return DefaultPanel;
