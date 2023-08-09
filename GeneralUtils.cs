@@ -59,6 +59,9 @@ namespace Utilities
             return Path.GetDirectoryName(ThisDllPath) + "\\" + DllName;
         }
 
+        /// <summary>
+        /// Create a panel in the default Addins tab
+        /// </summary>
         public static RibbonPanel GetRevitPanel(UIControlledApplication uiApp, string PanelName)
         {
             RibbonPanel DefaultPanel = null;
@@ -78,7 +81,55 @@ namespace Utilities
             return DefaultPanel;
         }
 
-        public static void CatchDialog(Exception ex)
+        /// <summary>
+        /// Create a panel in a specific existing or new tab
+        /// </summary>
+        public static RibbonPanel GetRevitPanel(UIControlledApplication uiApp, string PanelName, string TabName)
+        {
+            RibbonPanel DefaultPanel = null;
+            GetRevitTab(uiApp, TabName);
+
+            // Create the panel in the addins tab
+            try
+            {
+                DefaultPanel = uiApp.CreateRibbonPanel(TabName, PanelName);
+            }
+
+            catch (Autodesk.Revit.Exceptions.ArgumentException)
+            {
+                DefaultPanel = uiApp.GetRibbonPanels().FirstOrDefault(n => n.Name.Equals(PanelName, StringComparison.InvariantCulture));
+            }
+
+            return DefaultPanel;
+        }
+
+
+        /// <summary>
+        /// Create or get a Tab
+        /// </summary>
+        public static bool GetRevitTab(UIControlledApplication uiApp, string TabName)
+        {
+            // First try to create the tab
+            try
+            {
+                uiApp.CreateRibbonTab(TabName);
+                return true;
+            }
+            catch (Autodesk.Revit.Exceptions.ArgumentException)
+            {
+                // Tab is already created
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                CatchDialog(ex);
+                return false;
+            }
+            
+        }
+
+public static void CatchDialog(Exception ex)
         {
             string head = ex.Source + " - " + ex.GetType().ToString();
             string moreText = ex.Message + "\n\n" + ex.StackTrace + "\n\n" + ex.Data;
